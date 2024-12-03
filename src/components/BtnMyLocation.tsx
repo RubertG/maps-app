@@ -15,7 +15,7 @@ const BtnMyLocation = () => {
 
   return (
     <button
-      className="px-3 py-1.5 bg-zinc-900 hover:bg-zinc-700 transition-colors text-white rounded-lg shadow-lg text-sm fixed top-4 right-4"
+      className="px-3 py-1.5 border border-zinc-900 bg-zinc-900 hover:bg-zinc-700 transition-colors text-white rounded-lg shadow-lg text-sm fixed top-4 right-4"
       onClick={onClick}
     >
       Mi ubicación

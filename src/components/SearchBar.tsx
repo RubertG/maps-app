@@ -35,7 +35,7 @@ const SearchBar = () => {
   }
 
   return (
-    <section className="fixed top-4 left-4 w-full max-w-64">
+    <section className="fixed top-4 left-4 w-full max-w-56 md:max-w-64">
       <input
         className="block w-full text-black bg-white border border-zinc-300 text-sm rounded-lg shadow-lg px-3 py-1.5"
         type="text"
