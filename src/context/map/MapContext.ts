@@ -1,10 +1,8 @@
 import { Map } from "mapbox-gl"
 import { createContext } from "react"
+import { MapState } from "./MapProvider"
 
-interface MapContextProps {
-  isMapReady: boolean
-  map?: Map
-
+interface MapContextProps extends MapState{
   setMap: (map: Map) => void
   getRouteBetweenPoints: (start: [number, number], end: [number, number]) => Promise<void>
 }
