@@ -8,7 +8,7 @@ import { Feature } from "../interfaces/apiTypes"
 const SearchBar = () => {
   const { searchPlacesByQuery, places, isLoadingPlaces, setActivePlaceId, activePlaceId, userLocation } = useContext(PlacesContext)
   const { map, getRouteBetweenPoints, route } = useContext(MapContext)
-  const debounceRef = useRef<NodeJS.Timeout>()
+  const debounceRef = useRef<number | null>()
 
   const onQueryChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (debounceRef.current) {
