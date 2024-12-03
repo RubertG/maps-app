@@ -1,13 +1,13 @@
 import { Properties } from "../interfaces/apiTypes"
 
 interface Props {
-  onClick: () => void
+  children?: React.ReactNode
   active?: boolean
   properties: Properties
 }
 
 const SearchItem = ({
-  properties, onClick, active = false
+  properties, active = false, children
 }: Props) => {
 
   return (
@@ -15,12 +15,7 @@ const SearchItem = ({
       <h3 className="font-bold text-zinc-900">{properties.name}</h3>
       <p className="text-zinc-700 text-xs mt-1">{properties.full_address}</p>
 
-      <button
-        className="px-3 py-1.5 border border-zinc-900 hover:bg-zinc-900 transition-colors text-zinc-800 hover:text-white rounded-lg text-xs mt-2"
-        onClick={onClick}
-      >
-        Direcciones
-      </button>
+      {children}
     </li>
   )
 }
