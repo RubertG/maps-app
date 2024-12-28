@@ -4,6 +4,7 @@ import { SearchResults } from "./SearchResults"
 import { SearchItem } from "./SearchItem"
 import { LoadingPlaces } from "./LoadingPlaces"
 import { Feature } from "../interfaces/apiTypes"
+import { SearchResultsMenu } from "./SearchResultsMenu"
 
 const SearchBar = () => {
   const { searchPlacesByQuery, places, isLoadingPlaces, setActivePlaceId, activePlaceId, userLocation } = useContext(PlacesContext)
@@ -43,45 +44,47 @@ const SearchBar = () => {
         onChange={onQueryChange}
       />
 
-      <SearchResults
-        isLoadingPlaces={isLoadingPlaces}
-        places={places}
-        onLoadingPlaces={() => <LoadingPlaces />}
-      >
-        {
-          (places) => places.map((place) => (
-            <SearchItem
-              key={place.id}
-              active={activePlaceId === place.id}
-              properties={place.properties}
-            >
-              <footer className="flex gap-2 mt-2">
-                <button
-                  className="px-3 py-1.5 border border-zinc-900 hover:bg-zinc-900 transition-colors text-zinc-800 hover:text-white rounded-lg text-xs"
-                  onClick={() => getRoute(place)}
-                >
-                  Ruta
-                </button>
-                <button
-                  className="px-3 py-1.5 border border-zinc-900 bg-zinc-900 hover:bg-zinc-700 transition-colors text-white rounded-lg text-xs"
-                  onClick={() => onPlaceClick(place)}
-                >
-                  Ir
-                </button>
-              </footer>
-            </SearchItem>
-          ))
-        }
-      </SearchResults>
+      <SearchResultsMenu existPlaces={places.length > 0}>
+        <SearchResults
+          isLoadingPlaces={isLoadingPlaces}
+          places={places}
+          onLoadingPlaces={() => <LoadingPlaces />}
+        >
+          {
+            (places) => places.map((place) => (
+              <SearchItem
+                key={place.id}
+                active={activePlaceId === place.id}
+                properties={place.properties}
+              >
+                <footer className="flex gap-2 mt-2">
+                  <button
+                    className="px-3 py-1.5 border border-zinc-900 hover:bg-zinc-900 transition-colors text-zinc-800 hover:text-white rounded-lg text-xs"
+                    onClick={() => getRoute(place)}
+                  >
+                    Ruta
+                  </button>
+                  <button
+                    className="px-3 py-1.5 border border-zinc-900 bg-zinc-900 hover:bg-zinc-700 transition-colors text-white rounded-lg text-xs"
+                    onClick={() => onPlaceClick(place)}
+                  >
+                    Ir
+                  </button>
+                </footer>
+              </SearchItem>
+            ))
+          }
+        </SearchResults>
 
-      {
-        route && (
-          <footer className="text-black bg-white border mt-2 border-zinc-300 text-sm rounded-lg shadow-lg px-3 py-1.5">
-            <h2 className="font-bold">Información</h2>
-            <p className="text-zinc-900">{route.distance} kilometros - {route.duration} minutos</p>
-          </footer>
-        )
-      }
+        {
+          route && (
+            <footer className="text-black bg-white border mt-2 border-zinc-300 text-sm rounded-lg shadow-lg px-3 py-1.5">
+              <h2 className="font-bold">Información</h2>
+              <p className="text-zinc-900">{route.distance} kilometros - {route.duration} minutos</p>
+            </footer>
+          )
+        }
+      </SearchResultsMenu>
     </section>
   )
 }
